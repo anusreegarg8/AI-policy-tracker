@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Governance Intelligence Tracker</title>
+<style>
+:root {
+  --bg0:#060910; --bg1:#0b0f1a; --bg2:#101622; --bg3:#161e2e;
+  --bd:#1c2a40; --bd2:#243554;
+  --tx:#dde5f0; --tx2:#7a9ab8; --tx3:#3d5570;
+  --p1:#00d4ff; --p2:#ff4560; --p3:#2ed573; --p4:#ffab00;
+  --fw:#a78bfa;
+  --cl:#27ae60; --cm:#f39c12; --ch:#e74c3c; --cs:#9b59b6;
+  --mono:'Courier New',Courier,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;overflow:hidden;}
+body{background:var(--bg0);color:var(--tx);font-family:var(--sans);}
+
+/* ── PASSWORD GATE ─────────────────────────────────── */
+#gate{
+  position:fixed;inset:0;background:var(--bg0);z-index:9999;
+  display:flex;align-items:center;justify-content:center;
+}
+.gate-box{
+  width:360px;padding:40px;
+  background:var(--bg1);border:1px solid var(--bd2);border-radius:6px;
+  text-align:center;
+}
+.gate-logo{margin-bottom:20px;}
+.gate-title{font:700 11px/1 var(--mono);letter-spacing:4px;color:var(--p1);text-transform:uppercase;margin-bottom:8px;}
+.gate-sub{font:9px/1.6 var(--mono);color:var(--tx3);letter-spacing:2px;margin-bottom:28px;}
+.gate-input{
+  width:100%;padding:10px 14px;background:var(--bg2);border:1px solid var(--bd2);
+  border-radius:3px;color:var(--tx);font:13px/1 var(--mono);letter-spacing:3px;
+  text-align:center;outline:none;margin-bottom:10px;
+}
+.gate-input:focus{border-color:var(--p1);}
+.gate-btn{
+  width:100%;padding:10px;background:var(--p1);border:none;border-radius:3px;
+  color:var(--bg0);font:700 10px/1 var(--mono);letter-spacing:3px;cursor:pointer;
+  text-transform:uppercase;transition:opacity .15s;
+}
+.gate-btn:hover{opacity:.85;}
+.gate-err{font:10px/1 var(--mono);color:var(--ch);margin-top:8px;height:14px;}
+
+/* ── APP LAYOUT ────────────────────────────────────── */
+#app{display:flex;flex-direction:column;height:100%;display:none;}
+
+header{
+  background:var(--bg1);border-bottom:1px solid var(--bd);
+  padding:10px 16px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+.hd-left{display:flex;align-items:center;gap:12px;}
+.hd-logo{width:32px;height:32px;flex-shrink:0;}
+.hd-title{font:700 11px/1 var(--mono);letter-spacing:3px;color:var(--p1);}
+.hd-sub{font:9px/1 var(--mono);color:var(--tx3);letter-spacing:2px;margin-top:3px;}
+.hd-right{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+
+.fbtn{
+  padding:4px 11px;border-radius:2px;border:1px solid;
+  font:700 9px/1 var(--mono);letter-spacing:1.5px;cursor:pointer;
+  background:transparent;transition:all .15s;text-transform:uppercase;
+}
+.fbtn.all{border-color:var(--bd2);color:var(--tx2);}
+.fbtn.p1{border-color:var(--p1);color:var(--p1);}
+.fbtn.p2{border-color:var(--p2);color:var(--p2);}
+.fbtn.p3{border-color:var(--p3);color:var(--p3);}
+.fbtn.p4{border-color:var(--p4);color:var(--p4);}
+.fbtn.active.all{background:var(--bd2);}
+.fbtn.active.p1{background:var(--p1);color:var(--bg0);}
+.fbtn.active.p2{background:var(--p2);color:var(--bg0);}
+.fbtn.active.p3{background:var(--p3);color:var(--bg0);}
+.fbtn.active.p4{background:var(--p4);color:var(--bg0);}
+.fbtn:hover:not(.active){opacity:.75;}
+
+.icon-btn{
+  padding:5px 10px;background:transparent;border:1px solid var(--bd2);
+  border-radius:2px;color:var(--tx2);cursor:pointer;font-size:14px;
+  transition:all .15s;display:flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:10px;letter-spacing:1px;
+}
+.icon-btn:hover{border-color:var(--p1);color:var(--p1);}
+.icon-btn .ico{font-size:14px;}
+
+.live-badge{
+  font:700 9px/1 var(--mono);letter-spacing:1px;
+  color:var(--tx3);border:1px solid var(--bd);border-radius:2px;
+  padding:4px 9px;display:flex;align-items:center;gap:6px;
+}
+.live-dot{width:5px;height:5px;border-radius:50%;background:var(--p3);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+main{flex:1;display:flex;overflow:hidden;position:relative;}
+#gc{flex:1;position:relative;overflow:hidden;}
+#gc svg{width:100%;height:100%;display:block;}
+
+/* ── DETAIL PANEL ──────────────────────────────────── */
+#dp{
+  width:390px;flex-shrink:0;
+  background:var(--bg1);border-left:1px solid var(--bd);
+  overflow-y:auto;overflow-x:hidden;
+  transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);
+}
+#dp.open{transform:translateX(0);}
+#dp::-webkit-scrollbar{width:3px;}
+#dp::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:2px;}
+.ph{
+  padding:14px 16px;border-bottom:1px solid var(--bd);
+  position:sticky;top:0;background:var(--bg1);z-index:10;
+  display:flex;justify-content:space-between;align-items:flex-start;gap:10px;
+}
+.ph-close{background:none;border:none;color:var(--tx3);cursor:pointer;font-size:20px;line-height:1;padding:0;transition:color .15s;}
+.ph-close:hover{color:var(--tx);}
+.pb{padding:15px;}
+.fm{background:var(--bg2);border:1px solid var(--bd);border-radius:3px;padding:11px 13px;font:10px/1.8 var(--mono);color:var(--tx2);margin-bottom:14px;word-break:break-all;}
+.fm .k{color:var(--p1);}
+.fm .v{color:var(--tx);}
+.fm a{color:var(--p1);text-decoration:none;font-size:9px;}
+.fm a:hover{text-decoration:underline;}
+.cb{display:inline-block;padding:2px 7px;border-radius:2px;font:700 9px/1 var(--mono);letter-spacing:1px;text-transform:uppercase;}
+.cl-b{background:var(--cl);color:#fff;}
+.cm-b{background:var(--cm);color:#000;}
+.ch-b{background:var(--ch);color:#fff;}
+.cs-b{background:var(--cs);color:#fff;}
+.st{font:700 9px/1 var(--mono);letter-spacing:2px;text-transform:uppercase;color:var(--tx3);padding-bottom:5px;margin:15px 0 8px;border-bottom:1px solid var(--bd);}
+.pt{font-size:13px;font-weight:600;line-height:1.45;color:var(--tx);margin-bottom:7px;}
+.bt{font-size:12px;line-height:1.75;color:var(--tx2);margin-bottom:8px;}
+.tl{font:700 9px/1 var(--mono);color:var(--p4);letter-spacing:1px;margin-bottom:5px;text-transform:uppercase;}
+.tc{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.tag{padding:2px 8px;border:1px solid var(--bd2);border-radius:2px;font:10px/1 var(--mono);color:var(--tx2);}
+.ac{padding:10px 11px;border:1px solid var(--bd);border-radius:3px;margin-bottom:7px;cursor:pointer;background:var(--bg2);transition:border-color .15s;}
+.ac:hover{border-color:var(--bd2);}
+.ac-title{font-size:12px;font-weight:600;line-height:1.4;margin-bottom:5px;}
+.ac-meta{font:10px/1 var(--mono);color:var(--tx3);}
+#welcome{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:30px;text-align:center;}
+#welcome .wi{font-size:36px;margin-bottom:14px;opacity:.2;}
+#welcome p{font:10px/2.2 var(--mono);letter-spacing:2px;color:var(--tx3);text-transform:uppercase;}
+
+/* ── ADD ARTICLE OVERLAY ───────────────────────────── */
+#add-overlay{
+  position:fixed;inset:0;background:rgba(6,9,16,.85);z-index:500;
+  display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px);
+}
+#add-overlay.open{display:flex;}
+.add-box{
+  width:560px;max-height:90vh;overflow-y:auto;
+  background:var(--bg1);border:1px solid var(--bd2);border-radius:6px;
+}
+.add-box::-webkit-scrollbar{width:3px;}
+.add-box::-webkit-scrollbar-thumb{background:var(--bd2);}
+.add-header{
+  padding:16px 20px;border-bottom:1px solid var(--bd);
+  display:flex;justify-content:space-between;align-items:center;
+  position:sticky;top:0;background:var(--bg1);z-index:10;
+}
+.add-title{font:700 11px/1 var(--mono);letter-spacing:3px;color:var(--p1);text-transform:uppercase;}
+.add-body{padding:20px;}
+.form-row{margin-bottom:14px;}
+.form-label{font:700 9px/1 var(--mono);letter-spacing:2px;color:var(--tx3);text-transform:uppercase;margin-bottom:6px;display:block;}
+.form-input,.form-select,.form-textarea{
+  width:100%;padding:8px 11px;background:var(--bg2);border:1px solid var(--bd);
+  border-radius:3px;color:var(--tx);font:12px/1.4 var(--sans);outline:none;
+  transition:border-color .15s;
+}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--p1);}
+.form-textarea{resize:vertical;min-height:80px;line-height:1.6;}
+.form-select{cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a9ab8'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;}
+.form-select option{background:var(--bg2);}
+.url-row{display:flex;gap:8px;}
+.url-row .form-input{flex:1;}
+.fetch-btn{
+  padding:8px 14px;background:var(--bg3);border:1px solid var(--bd2);
+  border-radius:3px;color:var(--p1);font:700 9px/1 var(--mono);letter-spacing:1px;
+  cursor:pointer;white-space:nowrap;transition:all .15s;flex-shrink:0;
+}
+.fetch-btn:hover{border-color:var(--p1);background:rgba(0,212,255,.08);}
+.fetch-btn:disabled{opacity:.4;cursor:not-allowed;}
+.fetch-status{font:10px/1 var(--mono);color:var(--tx3);margin-top:5px;min-height:14px;}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.add-actions{display:flex;gap:8px;margin-top:20px;padding-top:16px;border-top:1px solid var(--bd);}
+.btn-primary{flex:1;padding:10px;background:var(--p1);border:none;border-radius:3px;color:var(--bg0);font:700 10px/1 var(--mono);letter-spacing:2px;cursor:pointer;text-transform:uppercase;transition:opacity .15s;}
+.btn-primary:hover{opacity:.85;}
+.btn-primary:disabled{opacity:.4;cursor:not-allowed;}
+.btn-secondary{padding:10px 16px;background:transparent;border:1px solid var(--bd2);border-radius:3px;color:var(--tx2);font:700 10px/1 var(--mono);letter-spacing:1px;cursor:pointer;transition:all .15s;}
+.btn-secondary:hover{border-color:var(--tx2);}
+.save-status{font:10px/1.5 var(--mono);color:var(--tx3);margin-top:8px;text-align:center;min-height:30px;}
+.save-status.ok{color:var(--p3);}
+.save-status.err{color:var(--ch);}
+
+/* ── SETTINGS OVERLAY ──────────────────────────────── */
+#settings-overlay{
+  position:fixed;inset:0;background:rgba(6,9,16,.85);z-index:500;
+  display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px);
+}
+#settings-overlay.open{display:flex;}
+.settings-box{
+  width:440px;background:var(--bg1);border:1px solid var(--bd2);border-radius:6px;padding:28px;
+}
+.settings-title{font:700 11px/1 var(--mono);letter-spacing:3px;color:var(--fw);text-transform:uppercase;margin-bottom:20px;}
+.settings-note{font:11px/1.7 var(--sans);color:var(--tx2);margin-bottom:16px;}
+.settings-note a{color:var(--p1);}
+.pat-row{display:flex;gap:8px;margin-bottom:8px;}
+.pat-row .form-input{flex:1;font-family:var(--mono);font-size:11px;letter-spacing:1px;}
+.pat-status{font:10px/1 var(--mono);color:var(--tx3);margin-bottom:16px;min-height:14px;}
+.pat-status.ok{color:var(--p3);}
+.settings-actions{display:flex;gap:8px;}
+
+/* ── OVERLAYS & GRAPH ──────────────────────────────── */
+.legend{position:absolute;bottom:14px;left:14px;background:rgba(11,15,26,.9);border:1px solid var(--bd);border-radius:3px;padding:11px 13px;font:10px/1 var(--mono);color:var(--tx2);backdrop-filter:blur(8px);pointer-events:none;}
+.l-hd{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--tx3);margin-bottom:8px;}
+.l-row{display:flex;align-items:center;gap:7px;margin-bottom:5px;}
+.l-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.statsbar{position:absolute;top:12px;right:14px;background:rgba(11,15,26,.9);border:1px solid var(--bd);border-radius:3px;padding:8px 12px;backdrop-filter:blur(8px);display:flex;gap:14px;pointer-events:none;}
+.sv{font:700 16px/1 var(--mono);color:var(--tx);}
+.sl{font:8px/1 var(--mono);letter-spacing:1px;text-transform:uppercase;color:var(--tx3);margin-top:3px;}
+#tt{position:fixed;background:var(--bg3);border:1px solid var(--bd2);border-radius:3px;padding:8px 11px;pointer-events:none;opacity:0;transition:opacity .12s;z-index:1000;max-width:230px;}
+#tt.v{opacity:1;}
+#tt .tt-t{font-size:12px;font-weight:600;margin-bottom:4px;}
+#tt .tt-m{font:10px/1.5 var(--mono);color:var(--tx2);}
+.dimmed{opacity:.08;transition:opacity .2s;}
+#loading{position:fixed;inset:0;background:var(--bg0);z-index:200;display:flex;align-items:center;justify-content:center;font:11px/1 var(--mono);letter-spacing:3px;color:var(--tx3);text-transform:uppercase;}
+</style>
+</head>
+<body>
+
+<!-- ── LOADING ── -->
+<div id="loading">INITIALIZING TRACKER…</div>
+
+<!-- ── PASSWORD GATE ── -->
+<div id="gate" style="display:none;">
+  <div class="gate-box">
+    <div class="gate-logo">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="21" stroke="#00d4ff" stroke-width="1.5" stroke-opacity=".4"/>
+        <circle cx="24" cy="24" r="14" stroke="#00d4ff" stroke-width="1" stroke-opacity=".6"/>
+        <circle cx="24" cy="24" r="7" stroke="#00d4ff" stroke-width="1.2"/>
+        <circle cx="24" cy="24" r="2.5" fill="#00d4ff"/>
+        <line x1="24" y1="3" x2="24" y2="45" stroke="#00d4ff" stroke-width=".8" stroke-opacity=".3"/>
+        <line x1="3" y1="24" x2="45" y2="24" stroke="#00d4ff" stroke-width=".8" stroke-opacity=".3"/>
+      </svg>
+    </div>
+    <div class="gate-title">AI GOVERNANCE TRACKER</div>
+    <div class="gate-sub">RESTRICTED ACCESS · ENTER CREDENTIALS</div>
+    <input type="password" class="gate-input" id="gate-pw" placeholder="••••••••" autocomplete="current-password">
+    <button class="gate-btn" onclick="checkPassword()">ACCESS SYSTEM</button>
+    <div class="gate-err" id="gate-err"></div>
+  </div>
+</div>
+
+<!-- ── MAIN APP ── -->
+<div id="app">
+  <header>
+    <div class="hd-left">
+      <svg class="hd-logo" viewBox="0 0 32 32" fill="none">
+        <circle cx="16" cy="16" r="14" stroke="#00d4ff" stroke-width="1.2" stroke-opacity=".5"/>
+        <circle cx="16" cy="16" r="9" stroke="#00d4ff" stroke-width="1" stroke-opacity=".7"/>
+        <circle cx="16" cy="16" r="4" stroke="#00d4ff" stroke-width="1.2"/>
+        <circle cx="16" cy="16" r="1.5" fill="#00d4ff"/>
+        <line x1="16" y1="2" x2="16" y2="30" stroke="#00d4ff" stroke-width=".6" stroke-opacity=".4"/>
+        <line x1="2" y1="16" x2="30" y2="16" stroke="#00d4ff" stroke-width=".6" stroke-opacity=".4"/>
+      </svg>
+      <div>
+        <div class="hd-title">GLOBAL AI GOVERNANCE INTELLIGENCE TRACKER</div>
+        <div class="hd-sub">EMERGING TECH RISK · GEOPOLITICS · INTERNATIONAL LAW</div>
+      </div>
+    </div>
+    <div class="hd-right">
+      <button class="fbtn all active" onclick="filterPillar(0,this)">ALL</button>
+      <button class="fbtn p1" onclick="filterPillar(1,this)">P1 · GOVERNANCE</button>
+      <button class="fbtn p2" onclick="filterPillar(2,this)">P2 · AI SAFETY</button>
+      <button class="fbtn p3" onclick="filterPillar(3,this)">P3 · CLIMATE</button>
+      <button class="fbtn p4" onclick="filterPillar(4,this)">P4 · SECURITY</button>
+      <button class="icon-btn" onclick="openAdd()"><span class="ico">＋</span> ADD ARTICLE</button>
+      <button class="icon-btn" onclick="openSettings()" title="GitHub Settings"><span class="ico">⚙</span></button>
+      <div class="live-badge"><span class="live-dot"></span>LIVE · <span id="art-count">0</span> ARTICLES</div>
+    </div>
+  </header>
+
+  <main>
+    <div id="gc">
+      <svg id="gs"></svg>
+      <div class="legend">
+        <div class="l-hd">NODE TYPES</div>
+        <div class="l-row"><div class="l-dot" style="background:#fff;opacity:.5;width:14px;height:14px;border:2px solid #fff"></div> THEMATIC PILLAR</div>
+        <div class="l-row"><div class="l-dot" style="background:rgba(167,139,250,.25);border:1.5px solid #a78bfa"></div> LEGAL FRAMEWORK</div>
+        <div class="l-row"><div class="l-dot" style="background:rgba(0,212,255,.2);border:1.5px solid #00d4ff"></div> P1 · GOVERNANCE</div>
+        <div class="l-row"><div class="l-dot" style="background:rgba(255,69,96,.2);border:1.5px solid #ff4560"></div> P2 · AI SAFETY</div>
+        <div class="l-row"><div class="l-dot" style="background:rgba(46,213,115,.2);border:1.5px solid #2ed573"></div> P3 · CLIMATE</div>
+        <div class="l-row"><div class="l-dot" style="background:rgba(255,171,0,.2);border:1.5px solid #ffab00"></div> P4 · SECURITY</div>
+        <div class="l-hd" style="margin-top:9px">CRITICALITY (NODE SIZE)</div>
+        <div class="l-row"><div class="l-dot" style="background:#27ae60;width:7px;height:7px"></div> LOW</div>
+        <div class="l-row"><div class="l-dot" style="background:#f39c12;width:9px;height:9px"></div> MEDIUM</div>
+        <div class="l-row"><div class="l-dot" style="background:#e74c3c;width:11px;height:11px"></div> HIGH</div>
+        <div class="l-row"><div class="l-dot" style="background:#9b59b6;width:13px;height:13px;border:2px solid #c39bd3"></div> SYSTEMIC RISK</div>
+      </div>
+      <div class="statsbar">
+        <div><div class="sv" id="stat-art">0</div><div class="sl">ARTICLES</div></div>
+        <div><div class="sv">10</div><div class="sl">FRAMEWORKS</div></div>
+        <div><div class="sv">4</div><div class="sl">PILLARS</div></div>
+        <div><div class="sv" style="color:var(--cs)" id="stat-sys">0</div><div class="sl">SYSTEMIC</div></div>
+      </div>
+    </div>
+    <div id="dp">
+      <div id="pc">
+        <div id="welcome">
+          <div class="wi">⬡</div>
+          <p>CLICK ANY NODE TO VIEW<br>INTELLIGENCE BRIEF</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ── ADD ARTICLE OVERLAY ── -->
+<div id="add-overlay">
+  <div class="add-box">
+    <div class="add-header">
+      <div class="add-title">＋ ADD INTELLIGENCE ITEM</div>
+      <button class="ph-close" onclick="closeAdd()">×</button>
+    </div>
+    <div class="add-body">
+
+      <div class="form-row">
+        <label class="form-label">SOURCE URL *</label>
+        <div class="url-row">
+          <input type="url" class="form-input" id="f-url" placeholder="https://...">
+          <button class="fetch-btn" id="fetch-btn" onclick="fetchMeta()">⟳ FETCH METADATA</button>
+        </div>
+        <div class="fetch-status" id="fetch-status"></div>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">TITLE *</label>
+        <input type="text" class="form-input" id="f-title" placeholder="Article or report title">
+      </div>
+
+      <div class="form-row-2">
+        <div class="form-row" style="margin-bottom:0">
+          <label class="form-label">INSTITUTION / AUTHOR *</label>
+          <input type="text" class="form-input" id="f-inst" placeholder="Think tank, agency, journal">
+        </div>
+        <div class="form-row" style="margin-bottom:0">
+          <label class="form-label">DATE PUBLISHED *</label>
+          <input type="date" class="form-input" id="f-date">
+        </div>
+      </div>
+
+      <div class="form-row-2" style="margin-top:14px;">
+        <div class="form-row" style="margin-bottom:0">
+          <label class="form-label">PRIMARY PILLAR *</label>
+          <select class="form-select" id="f-pillar">
+            <option value="">Select pillar…</option>
+            <option value="1">P1 · International Governance & Diplomacy</option>
+            <option value="2">P2 · Safety & Advanced AI Risk</option>
+            <option value="3">P3 · Climate & Environment</option>
+            <option value="4">P4 · National & International Security</option>
+          </select>
+        </div>
+        <div class="form-row" style="margin-bottom:0">
+          <label class="form-label">CRITICALITY *</label>
+          <select class="form-select" id="f-crit">
+            <option value="">Select level…</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+            <option value="Systemic Risk">Systemic Risk</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row" style="margin-top:14px;">
+        <label class="form-label">GEOGRAPHIC SCOPE *</label>
+        <input type="text" class="form-input" id="f-geo" placeholder="e.g. Global, Indo-Pacific, Transatlantic…">
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">STRATEGIC OVERVIEW * <span style="color:var(--tx3);font-weight:400">(2–4 sentences)</span></label>
+        <textarea class="form-textarea" id="f-overview" placeholder="Frame through IR or structural risk lens. Who are the primary actors, what is the catalyst?"></textarea>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">NETWORK TAGS <span style="color:var(--tx3);font-weight:400">(comma-separated)</span></label>
+        <input type="text" class="form-input" id="f-tags" placeholder="e.g. REAIM Process, CCW / LAWS Treaty, IHL">
+      </div>
+
+      <div class="add-actions">
+        <button class="btn-secondary" onclick="closeAdd()">CANCEL</button>
+        <button class="btn-primary" id="save-btn" onclick="saveArticle()">SAVE TO TRACKER</button>
+      </div>
+      <div class="save-status" id="save-status"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SETTINGS OVERLAY ── -->
+<div id="settings-overlay">
+  <div class="settings-box">
+    <div class="settings-title">⚙ GITHUB SETTINGS</div>
+    <p class="settings-note">
+      To save articles back to your GitHub repo, enter a Personal Access Token with <strong>repo</strong> scope.
+      Generate one at <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a> →
+      Tokens (classic) → repo scope. It will be stored in your browser's localStorage only.
+    </p>
+    <label class="form-label">GITHUB PERSONAL ACCESS TOKEN</label>
+    <div class="pat-row">
+      <input type="password" class="form-input" id="pat-input" placeholder="ghp_…">
+      <button class="fetch-btn" onclick="savePAT()">SAVE</button>
+    </div>
+    <div class="pat-status" id="pat-status"></div>
+    <div class="settings-actions">
+      <button class="btn-secondary" onclick="closeSettings()">CLOSE</button>
+      <button class="btn-secondary" onclick="clearPAT()" style="color:var(--ch);border-color:var(--ch);">CLEAR TOKEN</button>
+    </div>
+  </div>
+</div>
+
+<div id="tt"><div class="tt-t" id="tt-t"></div><div class="tt-m" id="tt-m"></div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+// ════════════════════════════════════════════
+//  CONSTANTS & HELPERS
+// ════════════════════════════════════════════
+const PASS_HASH = '823412d1eacb67956220e532959f0104603057c88704863ca38e7cd188fda812';
+const REPO = 'anusreegarg8/AI-policy-tracker';
+const PC = {0:'#a78bfa',1:'#00d4ff',2:'#ff4560',3:'#2ed573',4:'#ffab00'};
+const CC = {'Low':'#27ae60','Medium':'#f39c12','High':'#e74c3c','Systemic Risk':'#9b59b6'};
+const CS = {'Low':'cl-b','Medium':'cm-b','High':'ch-b','Systemic Risk':'cs-b'};
+const csz = {'Low':7,'Medium':9,'High':11,'Systemic Risk':13};
+
+const FRAMEWORKS = [
+  {id:'f1',type:'framework',label:'UNIDIR\nAISE',full:'UNIDIR AISE Framework'},
+  {id:'f2',type:'framework',label:'UN GA Res\n79-239',full:'UN GA Resolution 79-239'},
+  {id:'f3',type:'framework',label:'G7\nHiroshima',full:'G7 Hiroshima AI Process'},
+  {id:'f4',type:'framework',label:'ASEAN\nAI Guide',full:'ASEAN Guide on AI Governance'},
+  {id:'f5',type:'framework',label:'AU AI\nStrategy',full:'African Union AI Strategy'},
+  {id:'f6',type:'framework',label:'IHL /\nGeneva',full:'International Humanitarian Law / Geneva Conventions'},
+  {id:'f7',type:'framework',label:'NIST\nAI-RMF',full:'NIST AI Risk Management Framework'},
+  {id:'f8',type:'framework',label:'China\nGen-AI',full:'China Interim Measures on Generative AI'},
+  {id:'f9',type:'framework',label:'CCW\nLAWS',full:'CCW / LAWS Treaty Process'},
+  {id:'f10',type:'framework',label:'REAIM\nProcess',full:'REAIM Summit Process'},
+];
+
+const PILLARS = [
+  {id:'p1',type:'pillar',pillar:1,label:'GOVERNANCE\n& DIPLOMACY'},
+  {id:'p2',type:'pillar',pillar:2,label:'AI SAFETY\n& RISK'},
+  {id:'p3',type:'pillar',pillar:3,label:'CLIMATE\n& ENVIRONMENT'},
+  {id:'p4',type:'pillar',pillar:4,label:'NATIONAL\nSECURITY'},
+];
+
+function getBaseLinks(articles) {
+  const artLinks = [
+    {source:'a1',target:'f1',ltype:'af'},{source:'a1',target:'f9',ltype:'af'},
+    {source:'a1',target:'f6',ltype:'af'},{source:'a1',target:'f10',ltype:'af'},
+    {source:'a2',target:'f3',ltype:'af'},
+    {source:'a3',target:'f4',ltype:'af'},{source:'a3',target:'f8',ltype:'af'},
+    {source:'a4',target:'f3',ltype:'af'},{source:'a4',target:'f8',ltype:'af'},
+    {source:'a5',target:'f10',ltype:'af'},{source:'a5',target:'f1',ltype:'af'},{source:'a5',target:'f9',ltype:'af'},
+    {source:'a7',target:'f7',ltype:'af'},{source:'a8',target:'f2',ltype:'af'},
+    {source:'a9',target:'f7',ltype:'af'},
+    {source:'a14',target:'f10',ltype:'af'},{source:'a14',target:'f9',ltype:'af'},
+    {source:'a14',target:'f6',ltype:'af'},{source:'a14',target:'f2',ltype:'af'},
+    {source:'a15',target:'f6',ltype:'af'},
+    {source:'a16',target:'f10',ltype:'af'},{source:'a16',target:'f1',ltype:'af'},
+    {source:'a17',target:'f6',ltype:'af'},
+    {source:'a5',target:'a14',ltype:'xx'},{source:'a1',target:'a5',ltype:'xx'},
+    {source:'a1',target:'a14',ltype:'xx'},{source:'a7',target:'a9',ltype:'xx'},
+    {source:'a7',target:'a8',ltype:'xx'},{source:'a6',target:'a8',ltype:'xx'},
+    {source:'a10',target:'a11',ltype:'xx'},{source:'a2',target:'a4',ltype:'xx'},
+    {source:'a15',target:'a17',ltype:'xx'},{source:'a12',target:'a13',ltype:'xx'},
+    {source:'a16',target:'a5',ltype:'xx'},{source:'a1',target:'a15',ltype:'xx'},
+    {source:'p1',target:'f3',ltype:'pf'},{source:'p1',target:'f1',ltype:'pf'},
+    {source:'p1',target:'f2',ltype:'pf'},{source:'p1',target:'f4',ltype:'pf'},
+    {source:'p1',target:'f5',ltype:'pf'},{source:'p1',target:'f8',ltype:'pf'},
+    {source:'p2',target:'f7',ltype:'pf'},
+    {source:'p4',target:'f6',ltype:'pf'},{source:'p4',target:'f9',ltype:'pf'},{source:'p4',target:'f10',ltype:'pf'},
+  ];
+  const pillarLinks = articles.map(a => ({source:a.id, target:`p${a.pillar}`, ltype:'pa'}));
+  return [...pillarLinks, ...artLinks];
+}
+
+// ════════════════════════════════════════════
+//  PASSWORD
+// ════════════════════════════════════════════
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+async function checkPassword() {
+  const pw = document.getElementById('gate-pw').value;
+  const hash = await sha256(pw);
+  if (hash === PASS_HASH) {
+    localStorage.setItem('tracker_auth', Date.now().toString());
+    document.getElementById('gate').style.display = 'none';
+    startApp();
+  } else {
+    document.getElementById('gate-err').textContent = 'INVALID CREDENTIALS';
+    setTimeout(() => document.getElementById('gate-err').textContent = '', 2000);
+  }
+}
+
+document.getElementById('gate-pw')?.addEventListener('keydown', e => { if(e.key==='Enter') checkPassword(); });
+
+// ════════════════════════════════════════════
+//  BOOTSTRAP
+// ════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', async () => {
+  const auth = localStorage.getItem('tracker_auth');
+  const isValid = auth && (Date.now() - parseInt(auth)) < 7 * 24 * 60 * 60 * 1000;
+  document.getElementById('loading').style.display = 'none';
+  if (isValid) {
+    startApp();
+  } else {
+    document.getElementById('gate').style.display = 'flex';
+  }
+});
+
+async function startApp() {
+  document.getElementById('app').style.display = 'flex';
+  const data = await loadArticles();
+  buildGraph(data);
+}
+
+async function loadArticles() {
+  try {
+    const r = await fetch('articles.json?v=' + Date.now());
+    const data = await r.json();
+    return data.articles || [];
+  } catch(e) {
+    console.error('Failed to load articles.json', e);
+    return [];
+  }
+}
+
+// ════════════════════════════════════════════
+//  GRAPH
+// ════════════════════════════════════════════
+let simRef, linkSel, nodeSel, allNodesRef, rawLinksRef;
+
+function nColor(d) {
+  if (d.type==='framework') return '#a78bfa';
+  return PC[d.pillar] || '#888';
+}
+function lColor(l) {
+  const sid = typeof l.source==='string' ? l.source : l.source.id;
+  if (l.ltype==='pa') {
+    const pid = sid.startsWith('p') ? sid : (typeof l.target==='string' ? l.target : l.target.id);
+    return PC[parseInt(pid.replace('p',''))] || '#555';
+  }
+  if (l.ltype==='af') return '#6c5fc7';
+  if (l.ltype==='xx') return '#556070';
+  return '#222';
+}
+
+function buildGraph(articles) {
+  document.getElementById('stat-art').textContent = articles.length;
+  document.getElementById('art-count').textContent = articles.length;
+  document.getElementById('stat-sys').textContent = articles.filter(a=>a.criticality==='Systemic Risk').length;
+
+  const allNodes = [
+    ...PILLARS.map(p => ({...p, sz:26})),
+    ...FRAMEWORKS.map(f => ({...f, sz:10})),
+    ...articles.map(a => ({...a, sz: csz[a.criticality]||8})),
+  ];
+  const rawLinks = getBaseLinks(articles);
+  allNodesRef = allNodes;
+  rawLinksRef = rawLinks;
+
+  const gc = document.getElementById('gc');
+  const W = () => gc.clientWidth, H = () => gc.clientHeight;
+
+  const svg = d3.select('#gs');
+  svg.selectAll('*').remove();
+
+  const g = svg.append('g');
+  svg.call(d3.zoom().scaleExtent([0.15,5]).on('zoom', e => g.attr('transform', e.transform)));
+
+  const sim = d3.forceSimulation(allNodes)
+    .force('link', d3.forceLink(rawLinks).id(d=>d.id)
+      .distance(l => ({pa:130,pf:95,af:85,xx:65})[l.ltype]||100)
+      .strength(l => ({pa:0.35,pf:0.15,af:0.12,xx:0.25})[l.ltype]||0.2))
+    .force('charge', d3.forceManyBody().strength(d => d.type==='pillar'?-900:d.type==='framework'?-180:-130))
+    .force('center', d3.forceCenter(W()/2, H()/2))
+    .force('collision', d3.forceCollide().radius(d => d.sz+14))
+    .alphaDecay(0.018);
+  simRef = sim;
+
+  const link = g.append('g').selectAll('line').data(rawLinks).join('line')
+    .attr('stroke', lColor)
+    .attr('stroke-opacity', l => ({pa:0.35,pf:0.1,af:0.3,xx:0.25})[l.ltype]||0.2)
+    .attr('stroke-width', l => ({pa:1.5,pf:0.8,af:0.8,xx:1})[l.ltype]||1)
+    .attr('stroke-dasharray', l => l.ltype==='af'||l.ltype==='xx' ? '3,4' : null);
+  linkSel = link;
+
+  const node = g.append('g').selectAll('g').data(allNodes).join('g')
+    .attr('class', d=>`nd nd-${d.type}`)
+    .call(d3.drag()
+      .on('start',(e,d)=>{if(!e.active)sim.alphaTarget(0.3).restart();d.fx=d.x;d.fy=d.y})
+      .on('drag',(e,d)=>{d.fx=e.x;d.fy=e.y})
+      .on('end',(e,d)=>{if(!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null}))
+    .on('click', nodeClick)
+    .on('mouseover', nodeHover)
+    .on('mouseout', nodeOut);
+  nodeSel = node;
+
+  node.filter(d=>d.type==='pillar').each(function(d){
+    const el=d3.select(this), c=nColor(d);
+    el.append('circle').attr('r',d.sz+9).attr('fill','none').attr('stroke',c).attr('stroke-width',1).attr('stroke-opacity',.12);
+    el.append('circle').attr('r',d.sz+4).attr('fill','none').attr('stroke',c).attr('stroke-width',1.5).attr('stroke-opacity',.25);
+    el.append('circle').attr('r',d.sz).attr('fill',c).attr('fill-opacity',.1).attr('stroke',c).attr('stroke-width',2);
+    d.label.split('\n').forEach((ln,i,arr)=>{
+      el.append('text').attr('y',(i-(arr.length-1)/2)*11).attr('text-anchor','middle')
+        .attr('dominant-baseline','middle').attr('fill',c)
+        .attr('font-family',"'Courier New',monospace").attr('font-size','8.5px')
+        .attr('font-weight','700').attr('letter-spacing','1px').attr('pointer-events','none').text(ln);
+    });
+  });
+
+  node.filter(d=>d.type==='framework').each(function(d){
+    const el=d3.select(this);
+    el.append('circle').attr('r',d.sz).attr('fill','#a78bfa').attr('fill-opacity',.18).attr('stroke','#a78bfa').attr('stroke-width',1.5);
+    d.label.split('\n').forEach((ln,i)=>{
+      el.append('text').attr('y', d.sz+9+i*9).attr('text-anchor','middle')
+        .attr('fill','#a78bfa').attr('font-family',"'Courier New',monospace")
+        .attr('font-size','7.5px').attr('opacity',.75).attr('pointer-events','none').text(ln);
+    });
+  });
+
+  node.filter(d=>d.type==='article').each(function(d){
+    const el=d3.select(this), c=nColor(d), cc=CC[d.criticality];
+    if(d.criticality==='Systemic Risk'){
+      el.append('circle').attr('r',d.sz+5).attr('fill','none').attr('stroke',cc)
+        .attr('stroke-width',1).attr('stroke-opacity',.45).attr('stroke-dasharray','2,3');
+    }
+    el.append('circle').attr('r',d.sz).attr('fill',c).attr('fill-opacity',.22)
+      .attr('stroke',cc).attr('stroke-width', d.criticality==='Systemic Risk'?2:1.5);
+  });
+
+  sim.on('tick',()=>{
+    link.attr('x1',l=>l.source.x).attr('y1',l=>l.source.y)
+        .attr('x2',l=>l.target.x).attr('y2',l=>l.target.y);
+    node.attr('transform',d=>`translate(${d.x||0},${d.y||0})`);
+  });
+
+  svg.on('click',()=>{
+    document.getElementById('dp').classList.remove('open');
+    d3.selectAll('.nd').classed('dimmed',false);
+    link.classed('dimmed',false);
+  });
+
+  window.addEventListener('resize',()=>{
+    sim.force('center',d3.forceCenter(W()/2,H()/2)).alpha(0.08).restart();
+  });
+}
+
+// ════════════════════════════════════════════
+//  INTERACTIONS
+// ════════════════════════════════════════════
+const tt = document.getElementById('tt');
+
+function nodeHover(ev,d){
+  const t=document.getElementById('tt-t'), m=document.getElementById('tt-m');
+  t.style.color = d.type==='framework' ? '#a78bfa' : nColor(d);
+  if(d.type==='article'){t.textContent=d.title; m.textContent=`${d.inst} · ${d.date} · ${d.criticality}`;}
+  else if(d.type==='pillar'){t.textContent=d.label.replace('\n',' '); m.textContent='THEMATIC PILLAR';}
+  else{t.textContent=d.full; m.textContent='LEGAL / POLICY FRAMEWORK';}
+  tt.style.left=(ev.clientX+14)+'px'; tt.style.top=(ev.clientY-8)+'px';
+  tt.classList.add('v');
+  highlightNeighbors(d);
+}
+function nodeOut(){
+  tt.classList.remove('v');
+  if(!window._selNode){
+    d3.selectAll('.nd').classed('dimmed',false);
+    if(linkSel) linkSel.classed('dimmed',false);
+  }
+}
+function nodeClick(ev,d){
+  ev.stopPropagation();
+  window._selNode = d;
+  highlightNeighbors(d);
+  document.getElementById('dp').classList.add('open');
+  renderPanel(d);
+}
+
+function highlightNeighbors(d){
+  const vis=new Set([d.id]);
+  if(!rawLinksRef) return;
+  rawLinksRef.forEach(l=>{
+    const s=typeof l.source==='string'?l.source:l.source.id;
+    const t=typeof l.target==='string'?l.target:l.target.id;
+    if(s===d.id) vis.add(t);
+    if(t===d.id) vis.add(s);
+  });
+  d3.selectAll('.nd').classed('dimmed',n=>!vis.has(n.id));
+  if(linkSel) linkSel.classed('dimmed',l=>{
+    const s=typeof l.source==='string'?l.source:l.source.id;
+    const t=typeof l.target==='string'?l.target:l.target.id;
+    return s!==d.id && t!==d.id;
+  });
+}
+
+function cBadge(c){return `<span class="cb ${CS[c]||''}">${c}</span>`;}
+
+function renderPanel(d){
+  const pc=document.getElementById('pc');
+  const pname=['','International Governance & Diplomacy','Safety & Advanced AI Risk','Climate & Environment','National & International Security'];
+
+  if(d.type==='pillar'){
+    const arts=(allNodesRef||[]).filter(a=>a.type==='article'&&a.pillar===d.pillar);
+    pc.innerHTML=`<div class="ph"><div><div class="pt" style="color:${nColor(d)}">${d.label.replace('\n',' & ')}</div><div style="font:9px/1 var(--mono);color:var(--tx3);margin-top:5px">THEMATIC PILLAR &nbsp;·&nbsp; ${arts.length} ARTICLES</div></div><button class="ph-close" onclick="closePanel()">×</button></div>
+    <div class="pb">${arts.map(a=>`<div class="ac" onclick="renderPanel(window._nodesMap['${a.id}'])"><div class="ac-title" style="color:${nColor(a)}">${a.title}</div><div class="ac-meta">${a.inst} &nbsp;·&nbsp; ${a.date}</div><div style="margin-top:7px">${cBadge(a.criticality)}</div></div>`).join('')}</div>`;
+  } else if(d.type==='framework'){
+    pc.innerHTML=`<div class="ph"><div><div class="pt" style="color:#a78bfa">${d.full}</div><div style="font:9px/1 var(--mono);color:var(--tx3);margin-top:5px">LEGAL / POLICY FRAMEWORK</div></div><button class="ph-close" onclick="closePanel()">×</button></div>
+    <div class="pb"><p class="bt">This node represents a binding or soft-law framework intersecting multiple tracked intelligence items. Click linked article nodes to explore intersections and enforcement gaps.</p></div>`;
+  } else {
+    const shortUrl = d.url && d.url.length>55 ? d.url.slice(0,52)+'…' : (d.url||'');
+    pc.innerHTML=`<div class="ph"><div style="flex:1"><div class="pt">${d.title}</div><div style="margin-top:6px">${cBadge(d.criticality)}</div></div><button class="ph-close" onclick="closePanel()">×</button></div>
+    <div class="pb">
+      <div class="fm">
+<span class="k">type:</span> <span class="v">media-log</span>
+<span class="k">source_url:</span> ${d.url ? `<a href="${d.url}" target="_blank">${shortUrl}</a>` : '<span class="v">—</span>'}
+<span class="k">author_institution:</span> <span class="v">${d.inst||'—'}</span>
+<span class="k">date_published:</span> <span class="v">${d.date||'—'}</span>
+<span class="k">geographic_scope:</span> <span class="v">${d.geo||'—'}</span>
+<span class="k">primary_pillar:</span> <span class="v" style="color:${nColor(d)}">${pname[d.pillar]||''}</span>
+<span class="k">criticality:</span> ${cBadge(d.criticality)}</div>
+      ${d.url ? `<div style="margin-bottom:14px"><a href="${d.url}" target="_blank" style="font:10px/1 var(--mono);color:var(--p1);text-decoration:none">↗ View Original Source</a></div>` : ''}
+      <div class="st">📌 CONTEXT & STRATEGIC OVERVIEW</div>
+      <p class="bt">${d.overview||'<em>No overview recorded.</em>'}</p>
+      ${d.geo_t ? `<div class="st">⚡ KEY TAKEAWAYS</div>
+      <div style="margin-bottom:12px"><div class="tl">GEOPOLITICAL ALIGNMENT & FRICTION</div><p class="bt">${d.geo_t}</p></div>
+      <div style="margin-bottom:12px"><div class="tl">TECHNICAL CAPABILITIES & SECURITY RISKS</div><p class="bt">${d.tech_t||'—'}</p></div>
+      <div style="margin-bottom:12px"><div class="tl">ECOLOGICAL & RESOURCE PRESSURES</div><p class="bt">${d.eco_t||'—'}</p></div>` : ''}
+      ${d.legal ? `<div class="st">🕸️ LEGAL & POLICY INTERSECTIONS</div>
+      <div style="margin-bottom:12px"><div class="tl">EXISTING FRAMEWORK FRICTION</div><p class="bt">${d.legal}</p></div>
+      <div style="margin-bottom:12px"><div class="tl">NEGLECTED ANGLES & SYSTEMIC VULNERABILITIES</div><p class="bt">${d.neglect||'—'}</p></div>` : ''}
+      ${d.tags && d.tags.length ? `<div class="st">🏷️ NETWORK NODES</div><div class="tc">${d.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>` : ''}
+    </div>`;
+  }
+  // Build id→node map for inline onclick
+  window._nodesMap = {};
+  (allNodesRef||[]).forEach(n => window._nodesMap[n.id] = n);
+}
+
+window.closePanel = ()=>{
+  window._selNode = null;
+  document.getElementById('dp').classList.remove('open');
+  d3.selectAll('.nd').classed('dimmed',false);
+  if(linkSel) linkSel.classed('dimmed',false);
+};
+
+// ════════════════════════════════════════════
+//  FILTER
+// ════════════════════════════════════════════
+window.filterPillar = (pillar, btn)=>{
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(!rawLinksRef) return;
+  if(pillar===0){
+    d3.selectAll('.nd').classed('dimmed',false);
+    if(linkSel) linkSel.classed('dimmed',false);
+    return;
+  }
+  const vis=new Set();
+  (allNodesRef||[]).forEach(n=>{
+    if(n.type==='pillar') vis.add(n.id);
+    if(n.type==='framework') vis.add(n.id);
+    if(n.type==='article' && n.pillar===pillar) vis.add(n.id);
+  });
+  rawLinksRef.forEach(l=>{
+    const s=typeof l.source==='string'?l.source:l.source.id;
+    const t=typeof l.target==='string'?l.target:l.target.id;
+    if(vis.has(s)||vis.has(t)){vis.add(s);vis.add(t);}
+  });
+  d3.selectAll('.nd').classed('dimmed',n=>!vis.has(n.id));
+  if(linkSel) linkSel.classed('dimmed',l=>{
+    const s=typeof l.source==='string'?l.source:l.source.id;
+    const t=typeof l.target==='string'?l.target:l.target.id;
+    return !vis.has(s)||!vis.has(t);
+  });
+};
+
+// ════════════════════════════════════════════
+//  ADD ARTICLE
+// ════════════════════════════════════════════
+function openAdd(){
+  document.getElementById('add-overlay').classList.add('open');
+  document.getElementById('f-url').focus();
+}
+function closeAdd(){
+  document.getElementById('add-overlay').classList.remove('open');
+  resetForm();
+}
+function resetForm(){
+  ['f-url','f-title','f-inst','f-date','f-geo','f-overview','f-tags'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.value = '';
+  });
+  document.getElementById('f-pillar').value = '';
+  document.getElementById('f-crit').value = '';
+  document.getElementById('fetch-status').textContent = '';
+  document.getElementById('save-status').textContent = '';
+  document.getElementById('save-status').className = 'save-status';
+}
+
+async function fetchMeta(){
+  const url = document.getElementById('f-url').value.trim();
+  if(!url){document.getElementById('fetch-status').textContent='Enter a URL first.';return;}
+  const btn = document.getElementById('fetch-btn');
+  const status = document.getElementById('fetch-status');
+  btn.disabled = true; btn.textContent = '⟳ FETCHING…';
+  status.textContent = 'Contacting Microlink API…';
+  try {
+    const res = await fetch(`https://api.microlink.io?url=${encodeURIComponent(url)}`);
+    const data = await res.json();
+    if(data.status === 'success'){
+      const m = data.data;
+      if(m.title) document.getElementById('f-title').value = m.title;
+      if(m.publisher) document.getElementById('f-inst').value = m.publisher;
+      if(m.author) {
+        const curr = document.getElementById('f-inst').value;
+        document.getElementById('f-inst').value = curr ? curr : m.author;
+      }
+      if(m.date){
+        try{
+          const d = new Date(m.date);
+          if(!isNaN(d)) document.getElementById('f-date').value = d.toISOString().slice(0,10);
+        }catch(e){}
+      }
+      if(m.description && !document.getElementById('f-overview').value){
+        document.getElementById('f-overview').value = m.description;
+      }
+      status.textContent = '✓ Metadata fetched — review and complete the fields below.';
+      status.style.color = 'var(--p3)';
+    } else {
+      status.textContent = 'Could not auto-fetch — fill in manually.';
+      status.style.color = 'var(--tx3)';
+    }
+  } catch(e){
+    status.textContent = 'Fetch failed — fill in manually.';
+    status.style.color = 'var(--tx3)';
+  }
+  btn.disabled = false; btn.textContent = '⟳ FETCH METADATA';
+}
+
+function generateId(articles){
+  const nums = articles.map(a => parseInt((a.id||'a0').replace('a',''))).filter(n=>!isNaN(n));
+  return 'a' + (Math.max(0,...nums) + 1);
+}
+
+async function saveArticle(){
+  const url = document.getElementById('f-url').value.trim();
+  const title = document.getElementById('f-title').value.trim();
+  const inst = document.getElementById('f-inst').value.trim();
+  const date = document.getElementById('f-date').value.trim();
+  const pillar = parseInt(document.getElementById('f-pillar').value);
+  const criticality = document.getElementById('f-crit').value;
+  const geo = document.getElementById('f-geo').value.trim();
+  const overview = document.getElementById('f-overview').value.trim();
+  const tagsRaw = document.getElementById('f-tags').value.trim();
+
+  if(!url||!title||!inst||!date||!pillar||!criticality||!geo||!overview){
+    setStatus('save-status','⚠ Please fill in all required fields (marked *).','var(--cm)');
+    return;
+  }
+
+  const tags = tagsRaw ? tagsRaw.split(',').map(t=>t.trim()).filter(Boolean) : [];
+  setStatus('save-status','Saving…','var(--tx3)');
+  document.getElementById('save-btn').disabled = true;
+
+  // Build new article object
+  const currentArticles = (allNodesRef||[]).filter(n=>n.type==='article');
+  const newId = generateId(currentArticles);
+  const newArticle = {
+    id: newId, type:'article', pillar, criticality,
+    title, inst, date, geo, url, overview,
+    geo_t:'', tech_t:'', eco_t:'No direct environmental vectors noted.',
+    legal:'', neglect:'', tags
+  };
+
+  // Try to save to GitHub
+  const token = localStorage.getItem('gh_pat');
+  if(token){
+    const saved = await pushToGitHub(newArticle, token);
+    if(!saved){
+      document.getElementById('save-btn').disabled = false;
+      return;
+    }
+  } else {
+    setStatus('save-status','⚠ No GitHub token set — article added locally only (won\'t persist after refresh). Set token in ⚙ Settings.','var(--cm)');
+  }
+
+  // Add to graph immediately
+  addNodeToGraph(newArticle);
+  document.getElementById('save-btn').disabled = false;
+  if(token){
+    setStatus('save-status','✓ Article saved to tracker and committed to GitHub.','var(--p3)');
+    setTimeout(closeAdd, 1800);
+  }
+}
+
+async function pushToGitHub(newArticle, token){
+  try {
+    // 1. GET current articles.json
+    const headers = {
+      'Authorization': `token ${token}`,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    };
+    const getRes = await fetch(`https://api.github.com/repos/${REPO}/contents/articles.json`, {headers});
+    if(!getRes.ok){
+      const err = await getRes.json();
+      setStatus('save-status',`GitHub error: ${err.message||getRes.status}. Check your token in ⚙ Settings.`,'var(--ch)');
+      return false;
+    }
+    const fileData = await getRes.json();
+    const currentData = JSON.parse(decodeBase64Unicode(fileData.content.replace(/\n/g,'')));
+    const sha = fileData.sha;
+
+    // 2. Append new article
+    currentData.articles.push(newArticle);
+    currentData.meta.total = currentData.articles.length;
+    currentData.meta.last_updated = new Date().toISOString().slice(0,10);
+
+    // 3. PUT updated file
+    const newContent = encodeBase64Unicode(JSON.stringify(currentData, null, 2));
+    const putRes = await fetch(`https://api.github.com/repos/${REPO}/contents/articles.json`, {
+      method: 'PUT', headers,
+      body: JSON.stringify({
+        message: `Add article: ${newArticle.title.slice(0,60)}`,
+        content: newContent,
+        sha: sha
+      })
+    });
+    if(!putRes.ok){
+      const err = await putRes.json();
+      setStatus('save-status',`GitHub write error: ${err.message||putRes.status}`,'var(--ch)');
+      return false;
+    }
+    return true;
+  } catch(e){
+    setStatus('save-status',`Network error: ${e.message}`,'var(--ch)');
+    return false;
+  }
+}
+
+// Unicode-safe base64 helpers
+function decodeBase64Unicode(b64){
+  return decodeURIComponent(atob(b64).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+}
+function encodeBase64Unicode(str){
+  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,(m,p1)=>String.fromCharCode(parseInt(p1,16))));
+}
+
+function addNodeToGraph(article){
+  if(!simRef || !allNodesRef) return;
+  const newNode = {...article, sz: csz[article.criticality]||8};
+  allNodesRef.push(newNode);
+
+  // Update stats
+  const arts = allNodesRef.filter(n=>n.type==='article');
+  document.getElementById('stat-art').textContent = arts.length;
+  document.getElementById('art-count').textContent = arts.length;
+  document.getElementById('stat-sys').textContent = arts.filter(a=>a.criticality==='Systemic Risk').length;
+
+  // Rebuild graph from scratch with new data (cleanest approach)
+  buildGraph(arts);
+}
+
+function setStatus(id, msg, color){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.textContent = msg;
+  el.style.color = color || 'var(--tx3)';
+}
+
+// ════════════════════════════════════════════
+//  SETTINGS (GitHub PAT)
+// ════════════════════════════════════════════
+function openSettings(){
+  const existing = localStorage.getItem('gh_pat');
+  const input = document.getElementById('pat-input');
+  if(existing) input.value = existing;
+  const status = document.getElementById('pat-status');
+  status.textContent = existing ? '✓ Token is set.' : 'No token saved yet.';
+  status.style.color = existing ? 'var(--p3)' : 'var(--tx3)';
+  document.getElementById('settings-overlay').classList.add('open');
+}
+function closeSettings(){
+  document.getElementById('settings-overlay').classList.remove('open');
+}
+function savePAT(){
+  const val = document.getElementById('pat-input').value.trim();
+  if(!val){setStatus('pat-status','Enter a token first.','var(--cm)');return;}
+  localStorage.setItem('gh_pat', val);
+  setStatus('pat-status','✓ Token saved.','var(--p3)');
+}
+function clearPAT(){
+  localStorage.removeItem('gh_pat');
+  document.getElementById('pat-input').value = '';
+  setStatus('pat-status','Token cleared.','var(--tx3)');
+}
+
+// Close overlays on backdrop click
+document.getElementById('add-overlay').addEventListener('click', e=>{if(e.target===e.currentTarget)closeAdd();});
+document.getElementById('settings-overlay').addEventListener('click', e=>{if(e.target===e.currentTarget)closeSettings();});
+</script>
+</body>
+</html>
