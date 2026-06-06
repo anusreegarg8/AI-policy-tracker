@@ -1,15 +1,19 @@
 {
   "meta": {
-    "last_updated": "2026-06-05",
-    "total": 17,
+    "last_updated": "2026-06-06",
+    "total": 18,
     "repo": "anusreegarg8/AI-policy-tracker"
   },
   "articles": [
     {
-      "id": "a1", "type": "article", "pillar": 1, "criticality": "Systemic Risk",
+      "id": "a1",
+      "type": "article",
+      "pillar": 1,
+      "criticality": "Systemic Risk",
       "title": "UNIDIR: The Global Prism of Military AI Governance",
       "inst": "UNIDIR Security & Technology Programme",
-      "date": "2026-02-01", "geo": "Global",
+      "date": "2026-02-01",
+      "geo": "Global",
       "url": "https://unidir.org/wp-content/uploads/2026/02/UNIDIR_The_Global_Prism_of_Military_AI_Governance.pdf",
       "overview": "UNIDIR's landmark report synthesizes five regional consultations to map how states across Africa, Asia-Pacific, MENA, Latin America, and Europe conceptualize military AI governance. Published ahead of REAIM 2026, it exposes a deep North-South fracture: Global South actors demand capacity-building reciprocity as a precondition for any binding framework, while Euro-Atlantic states push principle-based codes anchored in IHL. The report directly challenges the AISE framework's assumed universality by documenting divergent interpretations of 'responsible AI' across geopolitical blocs.",
       "geo_t": "G7-aligned states favor rule-of-law codes of conduct; the African Union, ASEAN, and Non-Aligned Movement bloc demands technology transfer equity. India, Brazil, and South Africa are pivotal swing states whose positions could fracture any post-REAIM consensus. China's absence from the 35-state REAIM communiqué signals a strategic decoupling from Western multilateral norms.",
@@ -17,13 +21,24 @@
       "eco_t": "No direct environmental vectors noted.",
       "legal": "Incompatibility between UNIDIR AISE and the stalled CCW GGE process is now structural, not procedural. IHL's 'meaningful human control' standard remains undefined in any binding instrument. The report implicitly questions whether Geneva Convention proportionality and distinction principles can be operationalized for autonomous targeting.",
       "neglect": "Governance vacuum post-REAIM 2026 with only 35 of 85 states signing; any future binding instrument lacks legitimacy. The report underweights the risk of unilateral national frameworks creating incompatible interoperability standards for coalition warfare in the 12-24 month horizon.",
-      "tags": ["UNIDIR AISE Framework", "CCW / LAWS Treaty", "Non-Aligned Movement", "IHL / Meaningful Human Control", "REAIM Process", "Military AI Governance"]
+      "tags": [
+        "UNIDIR AISE Framework",
+        "CCW / LAWS Treaty",
+        "Non-Aligned Movement",
+        "IHL / Meaningful Human Control",
+        "REAIM Process",
+        "Military AI Governance"
+      ]
     },
     {
-      "id": "a2", "type": "article", "pillar": 1, "criticality": "High",
+      "id": "a2",
+      "type": "article",
+      "pillar": 1,
+      "criticality": "High",
       "title": "Chatham House: AI Export Controls Are Not the Best Bargaining Chip",
       "inst": "Chatham House",
-      "date": "2026-04-01", "geo": "Transatlantic / Indo-Pacific",
+      "date": "2026-04-01",
+      "geo": "Transatlantic / Indo-Pacific",
       "url": "https://www.chathamhouse.org/2026/04/ai-export-controls-are-not-best-bargaining-chip",
       "overview": "Chatham House argues that the US-led semiconductor export control regime has created strategic friction without achieving containment of Chinese AI capabilities. Huawei's Ascend 910C is gaining enterprise market share as NVIDIA's China footprint shrinks from ~90% to ~50%. The Trump administration's softening posture — approving higher-tier chip exports amid trade negotiations — risks undermining the entire Export Control Reform Act architecture built since 2022.",
       "geo_t": "The US-China chip war is bifurcating global AI infrastructure into incompatible ecosystems. Allied minilateral pressure (Japan, Netherlands, South Korea) on semiconductor equipment exports is fraying under economic pressure. The Global South is being courted by both blocs with divergent technology stacks.",
@@ -31,13 +46,24 @@
       "eco_t": "No direct environmental vectors noted.",
       "legal": "Tension between WTO non-discrimination obligations and US national security export regimes under the Export Control Reform Act. The Wassenaar Arrangement lacks enforcement mechanisms for AI-specific dual-use technologies. G7 Hiroshima Process on AI lacks any binding export control coordination mechanism.",
       "neglect": "12-24 month risk: China accelerates domestic semiconductor fab capacity (SMIC 7nm equivalent), rendering future export controls moot. Non-US allies (Germany, France) face legal exposure if they impose AI export controls without domestic legal authority.",
-      "tags": ["G7 Hiroshima Process", "Export Control Reform Act", "Wassenaar Arrangement", "US-China Tech Decoupling", "Semiconductor Supply Chain", "Minilateralism"]
+      "tags": [
+        "G7 Hiroshima Process",
+        "Export Control Reform Act",
+        "Wassenaar Arrangement",
+        "US-China Tech Decoupling",
+        "Semiconductor Supply Chain",
+        "Minilateralism"
+      ]
     },
     {
-      "id": "a3", "type": "article", "pillar": 1, "criticality": "Medium",
+      "id": "a3",
+      "type": "article",
+      "pillar": 1,
+      "criticality": "Medium",
       "title": "ISEAS: What Is Shaping ASEAN AI Governance in 2026",
       "inst": "ISEAS-Yusof Ishak Institute",
-      "date": "2026-01-01", "geo": "Indo-Pacific",
+      "date": "2026-01-01",
+      "geo": "Indo-Pacific",
       "url": "https://www.iseas.edu.sg/wp-content/uploads/2026/01/ISEAS-Perspective_2026_13.pdf",
       "overview": "This ISEAS Perspective analyzes the divergent paths of ASEAN member states on AI governance: Thailand and Indonesia are finalizing binding domestic frameworks while others retain purely voluntary approaches. China's expanding digital infrastructure footprint in Southeast Asia adds a geopolitical overlay — states deploying Chinese AI platforms are implicitly adopting Beijing's data governance norms. The ASEAN Guide on AI Governance (updated for GenAI in 2025) provides a soft-law baseline that bilateral technology agreements are beginning to supersede.",
       "geo_t": "ASEAN's consensus-driven model is under structural stress as member states face binary choices between US and Chinese technology ecosystems. Thailand and Indonesia's move toward binding frameworks may fragment ASEAN's unified governance posture.",
@@ -45,13 +71,24 @@
       "eco_t": "No direct environmental vectors noted.",
       "legal": "The ASEAN Guide's seven principles lack enforcement mechanisms. Incompatibility with the EU AI Act's extraterritorial application creates compliance challenges for ASEAN firms with European market access.",
       "neglect": "Governance vacuum for AI in ASEAN judicial and administrative systems is entirely unaddressed. Chinese data localization requirements embedded in platform agreements may constitute de facto digital sovereignty violations.",
-      "tags": ["ASEAN Guide on AI Governance", "China Interim Measures", "Digital Sovereignty", "Soft Law Governance", "Minilateralism", "Indo-Pacific Governance"]
+      "tags": [
+        "ASEAN Guide on AI Governance",
+        "China Interim Measures",
+        "Digital Sovereignty",
+        "Soft Law Governance",
+        "Minilateralism",
+        "Indo-Pacific Governance"
+      ]
     },
     {
-      "id": "a4", "type": "article", "pillar": 1, "criticality": "High",
+      "id": "a4",
+      "type": "article",
+      "pillar": 1,
+      "criticality": "High",
       "title": "BIS Revises AI Chip Export Review Policy for China & Macau",
       "inst": "US Dept. of Commerce — BIS / Morgan Lewis",
-      "date": "2026-01-13", "geo": "Transatlantic / Global",
+      "date": "2026-01-13",
+      "geo": "Transatlantic / Global",
       "url": "https://www.morganlewis.com/pubs/2026/01/bis-revises-export-review-policy-for-advanced-ai-chips-destined-for-china-and-macau",
       "overview": "On January 13, 2026, BIS shifted NVIDIA H200 and AMD MI325X-equivalent chip exports to China from 'presumption of denial' to 'case-by-case review,' while simultaneously imposing a 25% value-based tariff on advanced AI chips not destined for the US supply chain. This dual-signal policy — softening export controls while imposing tariffs — reflects the Trump administration's trade negotiation priorities overriding the national security containment architecture.",
       "geo_t": "The policy reversal signals a US domestic split between Commerce (containment) and the White House (trade leverage). Congressional backlash is intensifying around oversight of BIS export licensing. Chip-4 alliance partners are receiving contradictory signals.",
@@ -59,13 +96,24 @@
       "eco_t": "No direct environmental vectors noted.",
       "legal": "Tension with the CHIPS and Science Act's domestic manufacturing incentive structure. Potential WTO dispute exposure if tariff structure is challenged. The G7 Hiroshima Process has no export control working group to harmonize allied responses.",
       "neglect": "12-24 month risk: Chinese cloud providers re-export compute capacity to third parties outside US jurisdiction, creating a circumvention layer the current regulatory framework cannot reach.",
-      "tags": ["Export Control Reform Act", "G7 Hiroshima Process", "CHIPS Act", "US-China Tech Decoupling", "Semiconductor Supply Chain", "BIS Licensing Policy"]
+      "tags": [
+        "Export Control Reform Act",
+        "G7 Hiroshima Process",
+        "CHIPS Act",
+        "US-China Tech Decoupling",
+        "Semiconductor Supply Chain",
+        "BIS Licensing Policy"
+      ]
     },
     {
-      "id": "a5", "type": "article", "pillar": 1, "criticality": "High",
+      "id": "a5",
+      "type": "article",
+      "pillar": 1,
+      "criticality": "High",
       "title": "REAIM 2026 (A Coruña): \"Pathways for Action\" Signed by Only 35 of 85 States",
       "inst": "Just Security / GC REAIM",
-      "date": "2026-02-05", "geo": "Global / Minilateral",
+      "date": "2026-02-05",
+      "geo": "Global / Minilateral",
       "url": "https://www.justsecurity.org/129936/third-reaim-summit/",
       "overview": "The third REAIM summit in A Coruña (Feb 4-5, 2026) produced a 20-action 'Pathways for Action' document signed by only 35 of 85 attending states. The US and China both declined to endorse the joint declaration, representing a structural fracture in global military AI governance. The summit's implementation-focused agenda signals governance fatigue and a deliberate retreat from binding instrument ambitions.",
       "geo_t": "US-China joint absence from the communiqué is a pivotal geopolitical signal: the two dominant military AI powers are explicitly opting out of multilateral oversight. This empowers middle powers (UK, France, Australia, Japan) to set de facto governance baselines but without enforcement authority.",
@@ -73,13 +121,24 @@
       "eco_t": "No direct environmental vectors noted.",
       "legal": "The CCW GGE process is functionally dead as a pathway to binding LAWS regulation. IHL's applicability to fully autonomous targeting remains legally contested. The REAIM process operates outside the UN Charter framework.",
       "neglect": "Proliferation cascade risk: 50 non-signatories' autonomous weapons deployments create precedents eroding IHL customary law. The 12-24 month window before fully autonomous drone swarms become standard battlefield deployments is narrowing faster than governance can respond.",
-      "tags": ["REAIM Process", "CCW / LAWS Treaty", "UNIDIR AISE Framework", "IHL / Meaningful Human Control", "Autonomous Weapons Systems", "Minilateralism"]
+      "tags": [
+        "REAIM Process",
+        "CCW / LAWS Treaty",
+        "UNIDIR AISE Framework",
+        "IHL / Meaningful Human Control",
+        "Autonomous Weapons Systems",
+        "Minilateralism"
+      ]
     },
     {
-      "id": "a6", "type": "article", "pillar": 2, "criticality": "High",
+      "id": "a6",
+      "type": "article",
+      "pillar": 2,
+      "criticality": "High",
       "title": "RAIL: 88% of AI Agent-Deploying Organizations Report Security Incidents",
       "inst": "Responsible AI Labs",
-      "date": "2026-01-01", "geo": "Global",
+      "date": "2026-01-01",
+      "geo": "Global",
       "url": "https://responsibleailabs.ai/knowledge-hub/articles/ai-agent-safety-2026",
       "overview": "Responsible AI Labs' 2026 comprehensive guide documents that 88% of organizations deploying AI agents have experienced confirmed or suspected security incidents, yet only 14.4% of agent deployments reached production with full security and IT approval. The security-deployment velocity gap is identified as the defining enterprise AI risk of 2026.",
       "geo_t": "Enterprise agentic AI deployment is geographically distributed but risk is concentrated in critical infrastructure sectors regulated differently across jurisdictions. Cross-border incident response gaps create accountability voids with no international analog to CISA CIRCIA for AI agent failures.",
@@ -87,13 +146,24 @@
       "eco_t": "No direct environmental vectors noted.",
       "legal": "EU AI Act's incident reporting requirements do not cover agentic system failures outside defined 'high-risk' categories. NIST AI-RMF profiles lack agent-specific control mappings. No international equivalent to cybersecurity incident reporting frameworks addresses autonomous AI agent failures.",
       "neglect": "12-24 month systemic risk: autonomous agents in financial trading, power grid management, and supply chain logistics create cascade failure potential that no single regulator has visibility into.",
-      "tags": ["Autonomous Agent Misuse", "NIST AI-RMF", "Cybersecurity Incident Response", "Enterprise AI Security", "Cascade Failures", "Agentic Systems"]
+      "tags": [
+        "Autonomous Agent Misuse",
+        "NIST AI-RMF",
+        "Cybersecurity Incident Response",
+        "Enterprise AI Security",
+        "Cascade Failures",
+        "Agentic Systems"
+      ]
     },
     {
-      "id": "a7", "type": "article", "pillar": 2, "criticality": "Systemic Risk",
+      "id": "a7",
+      "type": "article",
+      "pillar": 2,
+      "criticality": "Systemic Risk",
       "title": "Frontier AI Risk Management Framework in Practice (v1.5)",
       "inst": "arXiv / Safety Research Community",
-      "date": "2026-02-01", "geo": "Global",
+      "date": "2026-02-01",
+      "geo": "Global",
       "url": "https://arxiv.org/pdf/2602.14457",
       "overview": "This technical report presents FRMF v1.5, detailing operationalization of safety evaluations across critical capability thresholds including autonomous replication, recursive self-improvement, and CBRN uplift. Published against the backdrop of Anthropic's controversial RSP overhaul — which removed a hard safety limit barring more capable model training without proven safety measures — the paper establishes an evidence base for threshold-based governance.",
       "geo_t": "US-headquartered frontier labs are collectively self-regulating through frameworks lacking independent verification authority. No international body has the technical capacity to audit compliance. China's frontier labs operate under entirely different disclosure norms.",
@@ -101,13 +171,24 @@
       "eco_t": "No direct environmental vectors noted.",
       "legal": "Incompatibility between self-reported safety evaluations and any externally verifiable standard. NIST AI-RMF lacks frontier model-specific control profiles. Neither the Council of Europe AI Treaty nor any UN resolution imposes mandatory evaluation requirements at pre-deployment capability thresholds.",
       "neglect": "Systemic 12-24 month risk: multiple frontier labs converging on similar capability thresholds simultaneously creates a governance vacuum where industry self-regulation is the sole operative constraint.",
-      "tags": ["Frontier Model Safety", "Recursive Self-Improvement", "NIST AI-RMF", "AI Capability Thresholds", "Lab Safety Frameworks", "Autonomous AI Research"]
+      "tags": [
+        "Frontier Model Safety",
+        "Recursive Self-Improvement",
+        "NIST AI-RMF",
+        "AI Capability Thresholds",
+        "Lab Safety Frameworks",
+        "Autonomous AI Research"
+      ]
     },
     {
-      "id": "a8", "type": "article", "pillar": 2, "criticality": "Systemic Risk",
+      "id": "a8",
+      "type": "article",
+      "pillar": 2,
+      "criticality": "Systemic Risk",
       "title": "Recursive Self-Improvement: The AI Risk That Keeps Researchers Up at Night",
       "inst": "MindStudio / AI Safety Research",
-      "date": "2026-01-01", "geo": "Global",
+      "date": "2026-01-01",
+      "geo": "Global",
       "url": "https://www.mindstudio.ai/blog/recursive-self-improvement-ai-risk-explained",
       "overview": "A comprehensive technical explainer on recursive self-improvement (RSI), documenting the mechanism by which AI systems could achieve compounding capability growth beyond human monitoring capacity. Synthesizes safety research consensus: RSI represents a capability threshold after which conventional oversight mechanisms may become functionally inadequate.",
       "geo_t": "RSI risk is primarily a US-China frontier lab concern, but governance responses are entirely fragmented. No bilateral or multilateral agreement addresses RSI as a specific risk category. All current international AI governance mechanisms predate RSI as an operational concern.",
@@ -115,13 +196,24 @@
       "eco_t": "No direct environmental vectors noted.",
       "legal": "No existing international legal framework addresses RSI as a distinct risk category. Council of Europe AI Treaty 'risk management' provisions are insufficiently specific for RSI-level systemic risks. UN GA Resolution 79-239 does not reference recursive self-improvement.",
       "neglect": "Critical governance gap: if RSI onset is detected post-deployment — the likely scenario given evaluation limitations — no international coordination mechanism exists for a controlled response.",
-      "tags": ["Recursive Self-Improvement", "Frontier Model Takeoff", "AI Capability Thresholds", "UN GA Resolution 79-239", "AI Safety Evaluation", "Systemic Risk"]
+      "tags": [
+        "Recursive Self-Improvement",
+        "Frontier Model Takeoff",
+        "AI Capability Thresholds",
+        "UN GA Resolution 79-239",
+        "AI Safety Evaluation",
+        "Systemic Risk"
+      ]
     },
     {
-      "id": "a9", "type": "article", "pillar": 2, "criticality": "High",
+      "id": "a9",
+      "type": "article",
+      "pillar": 2,
+      "criticality": "High",
       "title": "METR: Common Elements of Frontier AI Safety Policies",
       "inst": "METR (Model Evaluation and Threat Research)",
-      "date": "2026-01-01", "geo": "Global",
+      "date": "2026-01-01",
+      "geo": "Global",
       "url": "https://metr.org/common-elements",
       "overview": "METR's analysis identifies recurring structural elements across major frontier lab safety policies (Anthropic RSP, OpenAI Preparedness, Google DeepMind FSF), noting convergence on threshold-based deployment gates but divergence on verification, auditing, and response protocols. No lab has a credible external verification mechanism for its stated thresholds.",
       "geo_t": "All three major frontier safety frameworks are US-centric and lack international coordination provisions. UK AISI and EU AI Office have observer relationships but no enforcement authority. Chinese frontier labs have no equivalent published framework.",
@@ -129,13 +221,24 @@
       "eco_t": "No direct environmental vectors noted.",
       "legal": "NIST AI-RMF provides voluntary risk management vocabulary but no frontier-specific control requirements. Council of Europe AI Treaty Article 9 risk management provisions are insufficiently granular. No international inspection regime exists analogous to IAEA safeguards.",
       "neglect": "'Safety theater' cascade risk: convergence on similar thresholds without shared verification. 12-24 month risk: a threshold breach at one lab creates pressure on others to match the capability, unraveling the entire self-regulatory architecture.",
-      "tags": ["Frontier Model Safety", "NIST AI-RMF", "AI Safety Evaluation", "Lab Safety Frameworks", "AI Capability Thresholds", "Deceptive Alignment"]
+      "tags": [
+        "Frontier Model Safety",
+        "NIST AI-RMF",
+        "AI Safety Evaluation",
+        "Lab Safety Frameworks",
+        "AI Capability Thresholds",
+        "Deceptive Alignment"
+      ]
     },
     {
-      "id": "a10", "type": "article", "pillar": 3, "criticality": "Systemic Risk",
+      "id": "a10",
+      "type": "article",
+      "pillar": 3,
+      "criticality": "Systemic Risk",
       "title": "UN/UNU-INWEH: AI Could Use as Much Water as 1.3 Billion People by 2030",
       "inst": "UN University Institute for Water, Environment and Health",
-      "date": "2026-06-03", "geo": "Global",
+      "date": "2026-06-03",
+      "geo": "Global",
       "url": "https://time.com/article/2026/06/03/ai-global-water-resources-un-report/",
       "overview": "A landmark June 2026 UN University report projects AI data center water consumption to reach 9.3 trillion liters annually by 2030 — equivalent to the domestic water needs of all of Sub-Saharan Africa. Two-thirds of data centers built since 2022 are located in water-stressed areas. The report identifies AI infrastructure as a sovereign resource competition issue with direct implications for food security and interstate conflict.",
       "geo_t": "Water stress is geographically concentrated in regions already experiencing scarcity: Phoenix/Arizona, Northern Virginia, Singapore, and rapidly expanding African and Middle Eastern data center hubs. The intersection of AI infrastructure siting and water sovereignty creates new vectors for interstate friction.",
@@ -143,13 +246,24 @@
       "eco_t": "Systemic environmental risk: AI infrastructure in water-stressed regions creates de facto resource monopolies. The e-waste stream (2.5M tonnes/year by 2030) involves rare earth elements concentrated in the DRC and China — creating compounding ecological and geopolitical supply chain vulnerabilities.",
       "legal": "No international framework addresses AI infrastructure as an environmental treaty obligation. UN FCCC has no AI-specific annexe. SDG 6 compliance mechanisms have no enforcement authority over private sector water consumption.",
       "neglect": "Geopolitical cascade: water-stressed nations hosting AI infrastructure under foreign corporate ownership face a new form of resource extraction. 12-24 month risk: water stress from AI data centers contributes to food insecurity in affected regions — a causal chain entirely absent from current AI governance discourse.",
-      "tags": ["Data Center Water Depletion", "E-Waste Supply Chain", "UN SDG 6", "Paris Agreement", "Resource Sovereignty", "Environmental AI Impact"]
+      "tags": [
+        "Data Center Water Depletion",
+        "E-Waste Supply Chain",
+        "UN SDG 6",
+        "Paris Agreement",
+        "Resource Sovereignty",
+        "Environmental AI Impact"
+      ]
     },
     {
-      "id": "a11", "type": "article", "pillar": 3, "criticality": "High",
+      "id": "a11",
+      "type": "article",
+      "pillar": 3,
+      "criticality": "High",
       "title": "UNU-INWEH: Rising Emissions, Depleting Water, Vanishing Land",
       "inst": "United Nations University (UNU-INWEH)",
-      "date": "2026-06-03", "geo": "Global",
+      "date": "2026-06-03",
+      "geo": "Global",
       "url": "https://unu.edu/inweh/news/environmental-cost-of-AIs-Enrgy-use-carbon-water-and-land-footprints",
       "overview": "The UNU-INWEH primary research report quantifies AI's aggregate environmental footprint across carbon, water, and land dimensions. In 2025, data centers consumed 448 TWh globally — more than Saudi Arabia — with AI accounting for one-fifth. The report's 'responsible AI ecosystem' framework calls for transparency in environmental reporting, efficiency-by-design mandates, and lifecycle responsibility — none of which are currently binding.",
       "geo_t": "The US hosts ~45% of global AI data center capacity; Ireland, Singapore, and Northern Virginia face acute local grid stress. Environmental costs are disproportionately externalized onto host communities while economic benefits accrue to corporations in high-income countries.",
@@ -157,13 +271,24 @@
       "eco_t": "Land footprint (14,500 sq km by 2030, twice Jakarta metropolitan area) and e-waste stream create permanent ecological transformation. Rare earth supply chains for cooling systems are concentrated in geopolitically unstable regions.",
       "legal": "EU AI Act has no environmental impact assessment requirement. EU AI Liability Directive does not cover environmental damages. No OECD AI Principle addresses environmental externalities.",
       "neglect": "Regulatory gap: AI companies subject to CSRD environmental reporting but data center AI attributions are not disaggregated in any mandatory standard. 12-24 month risk: community opposition creates capacity bottleneck accelerating migration to less regulated jurisdictions.",
-      "tags": ["Data Center Energy Demand", "Compute Grid Strain", "E-Waste Material Monopolies", "Carbon Footprint", "EU AI Act", "Environmental Governance"]
+      "tags": [
+        "Data Center Energy Demand",
+        "Compute Grid Strain",
+        "E-Waste Material Monopolies",
+        "Carbon Footprint",
+        "EU AI Act",
+        "Environmental Governance"
+      ]
     },
     {
-      "id": "a12", "type": "article", "pillar": 3, "criticality": "Medium",
+      "id": "a12",
+      "type": "article",
+      "pillar": 3,
+      "criticality": "Medium",
       "title": "Brookings: Global Energy Demands Within the AI Regulatory Landscape",
       "inst": "Brookings Institution",
-      "date": "2026-03-01", "geo": "Global",
+      "date": "2026-03-01",
+      "geo": "Global",
       "url": "https://www.brookings.edu/articles/global-energy-demands-within-the-ai-regulatory-landscape/",
       "overview": "Brookings analyzes the intersection of AI energy demand growth and the emerging AI regulatory landscape, finding that energy-intensive AI deployment is outpacing grid infrastructure investment in most jurisdictions. The piece identifies a regulatory trilemma: states must simultaneously decarbonize grids, expand capacity for AI, and maintain energy price competitiveness.",
       "geo_t": "US data centers projected to consume 12% of national electricity by 2028. Ireland's 32% data center share demonstrates small states face sovereign energy dependency on tech infrastructure. Developing nations expanding AI data center sectors face disproportionate infrastructure costs.",
@@ -171,13 +296,24 @@
       "eco_t": "Compute grid strain is creating perverse incentives: data centers are accelerating reconnection of retired coal and gas plants. The carbon cost of AI is systematically underreported because marginal grid additions are fossil-heavy.",
       "legal": "No binding international energy reporting standard for AI infrastructure. EU Energy Efficiency Directive has data center provisions but no AI-specific thresholds. US FERC proceedings on data center interconnection are fragmented.",
       "neglect": "12-24 month risk: AI energy demand creates a new class of critical infrastructure with no equivalent resilience standards or international coordination mechanism. Grid attacks targeting data center clusters become a high-leverage cyberwarfare strategy.",
-      "tags": ["Data Center Energy Demand", "Compute Grid Strain", "Energy Security", "EU Energy Directive", "Critical Infrastructure", "Grid Resilience"]
+      "tags": [
+        "Data Center Energy Demand",
+        "Compute Grid Strain",
+        "Energy Security",
+        "EU Energy Directive",
+        "Critical Infrastructure",
+        "Grid Resilience"
+      ]
     },
     {
-      "id": "a13", "type": "article", "pillar": 3, "criticality": "High",
+      "id": "a13",
+      "type": "article",
+      "pillar": 3,
+      "criticality": "High",
       "title": "OECD.AI: US AI Data Centers Raise Power Grid Strain and Environmental Concerns",
       "inst": "OECD AI Policy Observatory",
-      "date": "2026-03-08", "geo": "Global",
+      "date": "2026-03-08",
+      "geo": "Global",
       "url": "https://oecd.ai/en/incidents/2026-03-08-f6c0",
       "overview": "The OECD AI incident database entry documents a pattern of community opposition to AI data center expansion across 30+ US states, with over $98 billion in planned investments blocked. Over 300 state legislative bills addressing data centers were introduced in 2026 alone. This bottom-up regulatory movement has been entirely missed by national and international AI governance frameworks.",
       "geo_t": "Community-level resistance to data center expansion is a new geopolitical variable: dispersed, decentralized, and driven by concrete local impacts. This movement has no equivalent in any multilateral AI governance framework.",
@@ -185,13 +321,24 @@
       "eco_t": "Average US electricity bill increases of 8% by 2030 attributable to data centers. Local grid strain in Northern Virginia and Phoenix is creating reliability concerns flagged by NERC as systemic.",
       "legal": "No federal-level US data center environmental framework exists. The 300+ state bills create a fragmented compliance environment. OECD AI Principles Recommendation has no binding enforcement mechanism for environmental impacts.",
       "neglect": "Cascade risk: if data center expansion is blocked in democratic jurisdictions, compute capacity migrates to authoritarian states with fewer environmental protections — creating a simultaneous environmental and geopolitical risk transfer.",
-      "tags": ["Compute Grid Strain", "Data Center Energy Demand", "OECD AI Principles", "Community Opposition", "Regulatory Arbitrage", "Critical Infrastructure"]
+      "tags": [
+        "Compute Grid Strain",
+        "Data Center Energy Demand",
+        "OECD AI Principles",
+        "Community Opposition",
+        "Regulatory Arbitrage",
+        "Critical Infrastructure"
+      ]
     },
     {
-      "id": "a14", "type": "article", "pillar": 4, "criticality": "Systemic Risk",
+      "id": "a14",
+      "type": "article",
+      "pillar": 4,
+      "criticality": "Systemic Risk",
       "title": "US and China Both Refuse to Sign Military AI Declaration at REAIM 2026",
       "inst": "The Defense Watch",
-      "date": "2026-02-05", "geo": "Global",
+      "date": "2026-02-05",
+      "geo": "Global",
       "url": "https://thedefensewatch.com/policy-strategy/us-and-china-refuse-to-sign-military-ai-declaration-at-reaim-summit/",
       "overview": "Both the US and China declined to endorse REAIM 2026's 'Pathways for Action' declaration in A Coruña — a joint absence that effectively delegitimizes the emerging multilateral military AI governance architecture. With only 35 of 85 states signing, the outcome document lacks normative authority to constrain the two dominant military AI powers.",
       "geo_t": "US-China joint non-participation signals strategic convergence in resisting external constraints on autonomous weapons development, despite their broader geopolitical rivalry. This creates a permissive international environment for AWS proliferation to third-state proxies and non-state actors.",
@@ -199,13 +346,24 @@
       "eco_t": "No direct environmental vectors noted.",
       "legal": "IHL's distinction, proportionality, and precaution principles are not enforceably applicable to autonomous targeting under current international law. CCW LAWS process is structurally blocked. UN GA Resolution 79-239 on autonomous weapons is non-binding.",
       "neglect": "12-24 month cascade risk: AWS precedents set in Gaza and Ukraine will become customary practice eroding IHL protections. Absence of US-China dialogue on military AI creates dramatically elevated miscalculation risk in crisis escalation scenarios.",
-      "tags": ["Autonomous Weapon Systems", "REAIM Process", "CCW / LAWS Treaty", "IHL / Meaningful Human Control", "US-China Military AI", "UN GA Resolution 79-239"]
+      "tags": [
+        "Autonomous Weapon Systems",
+        "REAIM Process",
+        "CCW / LAWS Treaty",
+        "IHL / Meaningful Human Control",
+        "US-China Military AI",
+        "UN GA Resolution 79-239"
+      ]
     },
     {
-      "id": "a15", "type": "article", "pillar": 4, "criticality": "High",
+      "id": "a15",
+      "type": "article",
+      "pillar": 4,
+      "criticality": "High",
       "title": "Small Wars Journal: Weaponized AI Expected to Redefine Conflict in 2026",
       "inst": "Small Wars Journal",
-      "date": "2026-02-09", "geo": "Global",
+      "date": "2026-02-09",
+      "geo": "Global",
       "url": "https://smallwarsjournal.com/2026/02/09/weaponized-artificial-intelligence-cyber-conflict-2026/",
       "overview": "Documents the Pentagon's doctrinal shift treating code and combat as unified domains, with AI-enhanced cyber offense capabilities now classified as core national defense infrastructure. AI-driven phishing, adaptive malware, and deepfake-enabled psychological operations are described as lowering the cost and barrier to sophisticated cyberattack.",
       "geo_t": "US military AI integration across cyber, ISR, and logistics creates overmatch capabilities peer adversaries are racing to close — a dangerous strategic instability window. Non-state actors are gaining access to AI-enhanced cyber and information warfare tools that previously required state-level resources.",
@@ -213,13 +371,24 @@
       "eco_t": "No direct environmental vectors noted.",
       "legal": "Tallinn Manual 3.0 does not address AI-autonomous cyberattacks. IHL attribution requirements for state responsibility are incompatible with AI-autonomous offensive operations. Budapest Convention on Cybercrime has no AI-specific provisions.",
       "neglect": "12-24 month risk: AI-generated deepfakes of nuclear commanders issuing false orders represent a low-probability, high-consequence cascade failure mode with no current detection protocol or international response framework.",
-      "tags": ["Cyber Warfighting", "Autonomous Weapon Systems", "Deepfakes / Information Warfare", "Nuclear Command AI", "Tallinn Manual", "IHL / Meaningful Human Control"]
+      "tags": [
+        "Cyber Warfighting",
+        "Autonomous Weapon Systems",
+        "Deepfakes / Information Warfare",
+        "Nuclear Command AI",
+        "Tallinn Manual",
+        "IHL / Meaningful Human Control"
+      ]
     },
     {
-      "id": "a16", "type": "article", "pillar": 4, "criticality": "High",
+      "id": "a16",
+      "type": "article",
+      "pillar": 4,
+      "criticality": "High",
       "title": "Just Security: Artificial Urgency — Reflecting on AI Hype at REAIM 2026",
       "inst": "Just Security",
-      "date": "2026-04-01", "geo": "Global / Minilateral",
+      "date": "2026-04-01",
+      "geo": "Global / Minilateral",
       "url": "https://www.justsecurity.org/132504/ai-hype-2026-reaim-summit/",
       "overview": "This post-mortem of REAIM 2026 argues the summit's agenda was shaped more by AI industry hype cycles than by concrete military deployment realities, resulting in policy frameworks misaligned with actual battlefield deployments. The piece identifies a 'responsible washing' dynamic where states endorse high-level principles while maintaining classified autonomous weapons programs.",
       "geo_t": "A coalition of states (UK, France, Netherlands, Australia, Japan) attempts to fill the governance vacuum left by US-China non-participation but lacks military AI capabilities to set credible standards. Industry capture of the REAIM process is flagged as a structural integrity concern.",
@@ -227,13 +396,24 @@
       "eco_t": "No direct environmental vectors noted.",
       "legal": "REAIM operates outside the UN Charter framework and has no legal status. 'Pathways for Action' has no implementation mechanism, reporting requirement, or verification protocol.",
       "neglect": "Systemic risk: REAIM's repeated failure to produce binding instruments may paradoxically accelerate proliferation by providing diplomatic cover for states pursuing autonomous weapons under 'responsible development' framing.",
-      "tags": ["REAIM Process", "Autonomous Weapon Systems", "Responsible AI Washing", "UNIDIR AISE Framework", "IHL / Meaningful Human Control", "Governance Legitimacy"]
+      "tags": [
+        "REAIM Process",
+        "Autonomous Weapon Systems",
+        "Responsible AI Washing",
+        "UNIDIR AISE Framework",
+        "IHL / Meaningful Human Control",
+        "Governance Legitimacy"
+      ]
     },
     {
-      "id": "a17", "type": "article", "pillar": 4, "criticality": "High",
+      "id": "a17",
+      "type": "article",
+      "pillar": 4,
+      "criticality": "High",
       "title": "America's New Military Strategy: AI, Cyberwarfare, and Autonomous Weapons Integration",
       "inst": "Security Affairs",
-      "date": "2026-03-01", "geo": "Transatlantic / Global",
+      "date": "2026-03-01",
+      "geo": "Transatlantic / Global",
       "url": "https://securityaffairs.com/191842/cyber-warfare-2/ai-cyberwarfare-and-autonomous-weapons-inside-americas-new-military-strategy.html",
       "overview": "Documents the Pentagon's doctrinal evolution treating AI, cybersecurity, and autonomous weapons as unified defense infrastructure. The deployment, securing, and operation of AI models inside classified environments is now considered a constitutional defense capability. Russia and China are pursuing parallel doctrinal integrations.",
       "geo_t": "US defense AI integration creates new Alliance obligation structures: NATO partners must develop compatible classified AI infrastructure or accept capability gaps in coalition operations. This creates technology sovereignty pressure on allied states.",
@@ -241,7 +421,35 @@
       "eco_t": "No direct environmental vectors noted.",
       "legal": "No international legal framework governs AI integration into nuclear command and control systems. New START successor framework has no AI provisions. Article 36 IHL reviews of AI-assisted targeting systems are not publicly disclosed by any major military power.",
       "neglect": "12-24 month systemic risk: classified military AI systems are being deployed faster than any legal review process can assess. The absence of any international disclosure norm for AI in nuclear command chains creates a strategic stability risk the NPT framework is entirely unprepared to address.",
-      "tags": ["Nuclear Command AI", "Cyber Warfighting", "Autonomous Weapon Systems", "NATO AI Integration", "Article 36 IHL Review", "Strategic Stability"]
+      "tags": [
+        "Nuclear Command AI",
+        "Cyber Warfighting",
+        "Autonomous Weapon Systems",
+        "NATO AI Integration",
+        "Article 36 IHL Review",
+        "Strategic Stability"
+      ]
+    },
+    {
+      "id": "a18",
+      "type": "article",
+      "pillar": 3,
+      "criticality": "Medium",
+      "title": "The Environmental Cost of Artificial Intelligence: Carbon, Water, and Land Footprints",
+      "inst": "United Nations University",
+      "date": "2026-06-06",
+      "geo": "global",
+      "url": "https://unu.edu/inweh/collection/environmental-cost-of-AIs-Enrgy-Use-Carbon-water-and-land-footprints",
+      "overview": "AI’s rapid growth drives huge energy, water, and land use, raising environmental and equity challenges across its global infrastructure.",
+      "geo_t": "",
+      "tech_t": "",
+      "eco_t": "No direct environmental vectors noted.",
+      "legal": "",
+      "neglect": "",
+      "tags": [
+        "environment",
+        "diplomacy"
+      ]
     }
   ]
 }
